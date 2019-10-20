@@ -4,7 +4,7 @@ import java.util.List;
 class PrefixMatcher {
     public static void main(String[] args) {
         // test for trie
-        String[] lsOfWords = {"there", "their", "answer", "any", "bye"};
+        String[] lsOfWords = {"there", "their", "answer", "any", "bye", "an", "a"};
         Trie tree = new Trie();
         for (String word : lsOfWords) {
             tree.insert(word);
@@ -51,6 +51,9 @@ class PrefixMatcher {
             leaves.add(parent);
             return leaves;
         }
+        if (node.numOfChildren < node.frequency) {
+            leaves.add(parent);
+        }
         for (int i=0; i<node.children.length; i++) {
             if (node.children[i] != null) {
                 char letter = (char) (i + 'a');
@@ -81,6 +84,7 @@ class Trie {
                 currNode.children[currChar] = new TrieNode();
             }
 
+            currNode.numOfChildren+=1;
             currNode.children[currChar].frequency+=1;
             currNode = currNode.children[currChar];
         }
@@ -104,6 +108,7 @@ class TrieNode {
     TrieNode[] children;
 
     int frequency;
+    int numOfChildren;
 
     void initChildren() {
         this.children = new TrieNode[ALPHABET_SIZE];
