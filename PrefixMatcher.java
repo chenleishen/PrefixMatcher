@@ -10,18 +10,6 @@ class PrefixMatcher {
             tree.insert(word);
         }
 
-        System.out.println(tree.search("there"));
-        System.out.println(tree.search("their"));
-        System.out.println(tree.search("answer"));
-        System.out.println(tree.search("any"));
-        System.out.println(tree.search("bye"));
-
-        System.out.println(tree.search("the"));
-        System.out.println(tree.search("a"));
-
-        System.out.println(tree.search("zebra"));
-        System.out.println(tree.search("these"));
-
         List<String> treeToArr = traverseTrie(tree.root, new ArrayList<String>(), "");
         System.out.println(treeToArr);
 
